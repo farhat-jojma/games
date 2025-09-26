@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>HTML5 Drawing App</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+    <link href="css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="description" content="Drawing and coloring app">
+    <meta name="keywords" content="drawing, drawing, draw app, draw and paint,coloring app,">
+
+</head>
+<style>
+</style>
+
+<body style="margin: 0;">
+    <!--https://www.youtube.com/watch?v=m4sioSqlXhQ-->
+    <div id="page">
+        <div id="toolbar">
+            <div id="toolbar">
+                <!-- Other tool options... -->
+                <!-- <div id="save" class="drawTool">
+                    Save
+                </div> -->
+                <div id="download" class="drawTool">
+                    Download
+                </div>
+                <!-- Other tool options... -->
+            </div>
+
+            <div class="tooloption" id="rad">
+                Radius
+                <span id="radval">10</span>
+                <div id="decrad" class="radcontrol">-</div>
+                <div id="incrad" class="radcontrol">+</div>
+            </div>
+            <div class="tooloption" id="colors">
+            </div>
+            <div id="clearCanvas" class="drawTool">
+                Clear
+            </div>
+            <div id="undo" class="drawTool">
+                Undo
+            </div>
+            <div id="restore" class="drawTool">
+                Redo
+            </div>
+            <!--	<a href="save" id="save" class="drawTool">
+            Save
+        </a>-->
+            <div id="eraser" class="drawTool">
+                <i class="fas fa-eraser"></i>
+            </div>
+            <div id="filldrip" class="drawTool">
+                <i class="fa fa-fill-drip"></i>
+            </div>
+            <div id="brush" class="drawTool">
+                <i class="fa fa-brush"></i>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="canvasWrapper">
+            <canvas id="myCanvas">
+				Sorry, your browser does not support HTML5 canvas
+			</canvas>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        function onReady(callback) {
+            var intervalID = window.setInterval(checkReady, 1000);
+
+            function checkReady() {
+                if (document.getElementsByTagName('body')[0] !== undefined) {
+                    window.clearInterval(intervalID);
+                    callback.call(this);
+                }
+            }
+        }
+
+        function show(id, value) {
+            document.getElementById(id).style.display = value ? 'block' : 'none';
+        }
+
+        onReady(function() {
+            show('page', true);
+            show('loading', false);
+        });
+
+        document.getElementById('save').addEventListener('click', saveCanvas);
+        document.getElementById('download').addEventListener('click', downloadCanvas);
+
+
+        function saveCanvas() {
+            // Get the canvas element
+            var canvas = document.getElementById('myCanvas');
+
+            // Convert the canvas content to a data URL
+            var dataURL = canvas.toDataURL('image/png');
+
+            // Open a new window with the data URL
+            window.open(dataURL, '_blank');
+        }
+
+        function downloadCanvas() {
+            // Get the canvas element
+            var canvas = document.getElementById('myCanvas');
+
+            // Convert the canvas content to a data URL
+            var dataURL = canvas.toDataURL('image/png');
+
+            // Create a temporary link element
+            var link = document.createElement('a');
+
+            // Set the href attribute to the data URL
+            link.href = dataURL;
+
+            // Set the download attribute with a desired filename
+            link.download = 'drawing.png';
+
+            // Append the link to the body
+            document.body.appendChild(link);
+
+            // Trigger a click event to start the download
+            link.click();
+
+            // Remove the link from the body
+            document.body.removeChild(link);
+        }
+    </script>
+
+
+
+
+
+
+    <script type="text/javascript" src="sketchpad.js"></script>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"737f2b7b3aa54fbabf29f6ca408080cc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<div id="loading"></div>
+
+
+<!--https://www.youtube.com/watch?v=mbf-7-7utUc-->
+<!--http://wineexplorer.brancottestate.com/attribute/varietal-->

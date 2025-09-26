@@ -1,0 +1,16 @@
+{
+  "name": "Drawing And Painting App-demo",
+  "short_name": "Drawing and Painting App-demo",
+  "id": "com.example.drawing",
+  "description": "A fun drawing and painting app for all ages!",
+  "orientation": "landscape",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#00ffff",
+  "categories": ["games", "entertainment"],
+  "icons": [{
+		"src": "desktop-icon-512.png",
+		"sizes": "512x512",
+		"type": "image/png"
+    }]
+  }
