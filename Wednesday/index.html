@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>Wednesday Addams Beauty Salon</title>
+    <script type="text/javascript" src="vendor/phaser.min.js"></script>
+    <script type="text/javascript" src="vendor/animation.js"></script>
+    <script type="text/javascript">
+        var soundcheck = false
+        var soundstart = 0
+        var soundcheck1 = true
+        window["GD_OPTIONS"] = {
+            gameId: "fake-test",
+            onEvent: function(event) {
+                console.log("SDK event intercepted:", event.name);
+                if(event.name === "SDK_GAME_START"){
+                    // Tu mets directement resume() ici sans attendre le SDK
+                    if(game && game.scene && game.scene.scenes[pageNo]){
+                        game.scene.scenes[pageNo].scene.resume();
+                    }
+                }
+            }
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://html5.api.gamedistribution.com/main.min.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'gamedistribution-jssdk'));
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            background-size: cover;
+            background-size: 100%;
+            background-position: center;
+        }
+
+        html,
+        body {
+            margin: 0;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='theGame'>
+        <script src="game.js"></script>
+    </div>
+</body>
+
+</html>
