@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Ultimate Moto</title>
+
+  <link rel="manifest" href="appmanifest.json" />
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+      touch-action: none;
+      -ms-touch-action: none;
+    }
+
+    canvas {
+      touch-action-delay: none;
+      touch-action: none;
+      -ms-touch-action: none;
+    }
+  </style>
+
+  <!-- Google Analytics (facultatif, peut être supprimé aussi si tu veux 100 % offline) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3L51GQCRZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-3L51GQCRZH');
+  </script>
+
+  <link rel="canonical" href="https://www.onlinegames.io/ultimate-moto/" />
+
+  <!-- 🔧 Code interne sans publicité -->
+  <script>
+    function SubmitLeaderboardScore() { }
+    function InitExternEval() { }
+    function TakeReward() { }
+    function RewardErrorHandled() { }
+    function InitApi() { console.log("API Initialized (no-ads mode)"); }
+
+    // Désactivation complète des ads
+    window.adRunning = 0;
+    window.adRunningRewarded = 0;
+    window.adReward = 0;
+    window.rewardError = 0;
+    window.canReward = 0;
+    window.callTime = 0;
+    window.adPlatform = 0;
+    window.myLeaderboardScore = 0;
+    window.gameLang = "en";
+
+    InitApi();
+  </script>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+
+  <script>
+    // Empêche les erreurs locales de Construct
+    if (window.location.protocol.startsWith("file")) {
+      alert("Upload the game to a web server — file:// protocol disables some features.");
+    }
+  </script>
+
+  <div id="c2canvasdiv">
+    <canvas id="c2canvas" width="854" height="480">
+      <h1>Your browser does not appear to support HTML5.
+        <a href="http://www.whatbrowser.org">What is a browser?</a><br /><br />
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br />
+        <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br />
+        <a href="http://www.google.com/chrome/">Google Chrome</a><br />
+        <a href="http://www.apple.com/safari/download/">Apple Safari</a>
+      </h1>
+    </canvas>
+  </div>
+
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="c2runtime.js"></script>
+
+  <script>
+    jQuery(document).ready(function () {
+      cr_createRuntime("c2canvas");
+    });
+
+    // Pause / reprise selon la visibilité
+    function onVisibilityChanged() {
+      const hidden = document.hidden || document.mozHidden || document.webkitHidden || document.msHidden;
+      cr_setSuspended(!!hidden);
+    }
+
+    document.addEventListener("visibilitychange", onVisibilityChanged, false);
+    document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+    document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+    document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+
+    function OnRegisterSWError(e) {
+      console.warn("Failed to register service worker: ", e);
+    }
+
+    window.C2_RegisterSW = function () {
+      if (!navigator.serviceWorker) return;
+      try {
+        navigator.serviceWorker.register("sw.js", { scope: "./" })
+          .then(reg => console.log("Service worker registered on " + reg.scope))
+          .catch(OnRegisterSWError);
+      } catch (e) {
+        OnRegisterSWError(e);
+      }
+    };
+  </script>
+</body>
+
+</html>
